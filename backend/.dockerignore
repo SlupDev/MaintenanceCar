@@ -1,0 +1,16 @@
+node_modules
+npm-debug.log
+.env
+.env.test
+.git
+.gitignore
+.vscode
+.idea
+*.md
+build
+tmp
+.adonisrc.json.old
+ace.js.old
+coverage
+.DS_Store
+
