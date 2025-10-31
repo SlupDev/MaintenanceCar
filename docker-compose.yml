@@ -1,4 +1,4 @@
-version: '3.8'
+# version: '3.8'
 
 services:
   # Base de données PostgreSQL
@@ -36,6 +36,10 @@ services:
       NODE_ENV: development
       PORT: 3333
       HOST: 0.0.0.0
+
+      CHOKIDAR_USEPOLLING: "true"   # force le polling
+      CHOKIDAR_INTERVAL: "300"      # ms (ajuste 100–500 si besoin)
+      WATCHPACK_POLLING: "true"     # inoffensif, utile si un watcher Webpack traine
     volumes:
       - ./backend:/app
       - /app/node_modules
