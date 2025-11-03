@@ -27,13 +27,6 @@ copy env.docker.example .env
 cp env.docker.example .env
 ```
 
-Générer l'APP_KEY :
-```bash
-node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
-```
-
-Copier le résultat dans `.env` à la ligne `APP_KEY=`
-
 ### 2. Lancer Docker
 
 ```bash

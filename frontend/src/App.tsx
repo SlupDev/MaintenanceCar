@@ -1,10 +1,17 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { Login, Home } from './pages'
+import './App.css'
+
 function App() {
   return (
-    <div style={{ padding: '2rem', fontFamily: 'system-ui' }}>
-      <h1>🚗 Maintenance Car</h1>
-      <p>Frontend React + Vite prêt !</p>
-      <p>Développe ton application ici.</p>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        {/* Ajouter d'autres routes ici quand nécessaire */}
+      </Routes>
+    </BrowserRouter>
   )
 }
 
