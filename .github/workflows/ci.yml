@@ -49,6 +49,21 @@ jobs:
       run:
         working-directory: ./backend
 
+    # env:
+    #   NODE_ENV: test
+    #   PORT: 3333
+    #   APP_KEY: ${{ secrets.BACKEND_APP_KEY }} 
+    #   HOST: 127.0.0.1
+    #   LOG_LEVEL: info
+
+    #   DB_HOST: ${{ secrets.BACKEND_DB_HOST }}
+    #   DB_PORT: ${{ secrets.BACKEND_DB_PORT }}
+    #   DB_USER: ${{ secrets.BACKEND_DB_USER }}
+    #   DB_PASSWORD: ${{ secrets.BACKEND_DB_PASSWORD }}
+    #   DB_DATABASE: ${{ secrets.BACKEND_DB_DATABASE }}
+
+    #   SESSION_DRIVER: cookie
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -59,6 +74,24 @@ jobs:
           node-version: 24
           cache: 'npm'
           cache-dependency-path: backend/package-lock.json
+
+      - name: Create .env for CI
+        run: |
+          cat << 'EOF' > .env
+          NODE_ENV=test
+          PORT=3333
+          APP_KEY=some_random_app_key_for_tests
+          HOST=127.0.0.1
+          LOG_LEVEL=info
+
+          DB_HOST=127.0.0.1
+          DB_PORT=5432
+          DB_USER=test_user
+          DB_PASSWORD=test_password
+          DB_DATABASE=test_db
+
+          SESSION_DRIVER=cookie
+          EOF
 
       - name: Install dependencies
         # run: npm ci
