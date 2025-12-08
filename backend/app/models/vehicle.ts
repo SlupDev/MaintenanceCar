@@ -1,0 +1,52 @@
+import { DateTime } from 'luxon'
+import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
+import { EngineType } from '../enum/engineType.js'
+import User from './user.js'
+import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+
+export default class Vehicle extends BaseModel {
+  @column({ isPrimary: true })
+  declare id: number
+
+  @column({})
+  declare userId: number
+
+  @column({})
+  declare brand: string // might be a new entity in the future
+
+  @column({})
+  declare model: string // might be a new entity in the future
+
+  @column({})
+  declare yearOfRegistration: string
+
+  @column({})
+  declare currentMileage: number
+
+  @column({})
+  declare registrationNumber: string
+
+  @column({})
+  declare vehicleIdentificationNumber: string
+
+  @column({})
+  declare engineType: EngineType
+
+  @column({})
+  declare power: string
+
+  @column({})
+  declare color: string
+
+  @column.date({})
+  declare dateOfPurchase: DateTime
+
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime
+
+  @belongsTo(() => User)
+  declare user: BelongsTo<typeof User>
+}
