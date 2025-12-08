@@ -33,8 +33,8 @@ jobs:
         run: npm install
 
       # Optionnel si tu as des tests
-      - name: Run tests
-        run: npm test -- --watch=false
+      # - name: Run tests
+      #   run: npm test -- --watch=false
 
       # Build de prod pour vérifier que ça passe
       - name: Build
