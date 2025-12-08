@@ -29,7 +29,8 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        # run: npm ci
+        run: npm install
 
       # Optionnel si tu as des tests
       - name: Run tests
@@ -60,7 +61,8 @@ jobs:
           cache-dependency-path: backend/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        # run: npm ci
+        run: npm install
 
       # Si Adonis utilise des variables d'env pour les tests,
       # tu peux les définir via les "Secrets" GitHub et les exporter ici.
