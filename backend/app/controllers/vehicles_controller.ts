@@ -5,11 +5,11 @@ export default class VehiclesController {
   /**
    * Display a list of resource
    */
-  async index({ /* response */ }: HttpContext) {
-    /* const vehicle  = await Vehicle.all()
+  async index({ response }: HttpContext) {
+    const vehicle  = await Vehicle.all()
     
-    return response.ok(vehicle) */
-    return [
+    return response.ok(vehicle);
+    /* return [
       {
         id: 1,
         name: "test"
@@ -26,36 +26,96 @@ export default class VehiclesController {
         id: 4,
         name: "test"
       },
-    ]
+    ] */
   }
-
-  /**
-   * Display form to create a new record
-   */
-  async create({}: HttpContext) {}
 
   /**
    * Handle form submission for the create action
    */
-  async store({ request }: HttpContext) {}
+  async store({ request, response }: HttpContext) {
+    try {
+      const paylod = request.only([
+        // ----
+      ])
+
+      const vehicle = await Vehicle.create(paylod)
+
+      return response.created(vehicle)
+    } catch (error) {
+      console.error(error)
+      return response.internalServerError({
+        message: 'Erreur lors de la création du véhicule',
+      })
+    }
+  }
 
   /**
    * Show individual record
    */
-  async show({ params }: HttpContext) {}
+  async show({ params, response }: HttpContext) {
+    const vehicle = await Vehicle.find(params.id)
+
+    if (!vehicle) {
+      return response.notFound({
+        message: 'Véhicule introuvable'
+      })
+    }
+
+    return response.ok(vehicle)
+  }
 
   /**
    * Edit individual record
    */
-  async edit({ params }: HttpContext) {}
+  async update({ params, request, response }: HttpContext) {
+    try {
+      const vehicle = await Vehicle.find(params.id)
 
-  /**
-   * Handle form submission for the edit action
-   */
-  async update({ params, request }: HttpContext) {}
+      if (!vehicle) {
+        return response.notFound({
+          message: 'Véhicule introuvable'
+        })
+      }
+
+      const paylod = request.only([
+        // ...
+      ])
+
+      vehicle.merge(paylod)
+      await vehicle.save()
+
+      return response.ok(vehicle)
+    } catch (error) {
+      console.error(error)
+      return response.internalServerError({
+        message: 'Erreur lors de la mise à jour du véhicule',
+      })
+    }
+  }
 
   /**
    * Delete record
    */
-  async destroy({ params }: HttpContext) {}
+  async destroy({ params, response }: HttpContext) {
+    try {
+      const vehicle = await Vehicle.find(params.id)
+
+      if (!vehicle) {
+        return response.notFound({
+          message: 'Véhicule introuvable',
+        })
+      }
+
+      await vehicle.delete()
+
+      return response.ok({
+        message: 'Véhicule supprimé avec succès',
+      })
+    } catch (error) {
+      console.error(error)
+      return response.internalServerError({
+        message: 'Erreur lors de la suppression du véhicule',
+      })
+    }
+  }
 }
