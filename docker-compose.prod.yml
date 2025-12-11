@@ -4,6 +4,8 @@ services:
     image: postgres:16-alpine
     container_name: maintenance-car-db-prod
     restart: always
+    env_file:
+      - ./backend/.env
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -30,16 +32,7 @@ services:
       NODE_ENV: production
       PORT: 3333
       HOST: 0.0.0.0
-      LOG_LEVEL: info
-      SESSION_DRIVER: cookie
-
-      APP_KEY: ${APP_KEY}
-
-      DB_HOST: db
-      DB_PORT: 5432
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_DATABASE: ${DB_NAME}
+      
     depends_on:
       db:
         condition: service_healthy
