@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # Base de données PostgreSQL
   db:
@@ -32,6 +30,16 @@ services:
       NODE_ENV: production
       PORT: 3333
       HOST: 0.0.0.0
+      LOG_LEVEL: info
+      SESSION_DRIVER: cookie
+
+      APP_KEY: ${APP_KEY}
+
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DATABASE: ${DB_NAME}
     depends_on:
       db:
         condition: service_healthy
