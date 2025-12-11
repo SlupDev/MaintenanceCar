@@ -1,5 +1,5 @@
 # Utiliser Node.js LTS
-FROM node:20-alpine AS base
+FROM node:22.16.0-alpine3.22 AS base
 
 WORKDIR /app
 
@@ -28,7 +28,7 @@ COPY . .
 RUN npm run build
 
 # Servir avec un serveur simple
-FROM node:20-alpine AS serve
+FROM node:22.16.0-alpine3.22 AS serve
 WORKDIR /app
 RUN npm install -g serve
 COPY --from=production /app/dist /app/dist
