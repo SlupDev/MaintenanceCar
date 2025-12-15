@@ -15,15 +15,20 @@ export default class extends BaseSchema {
         .inTable('users')
         .onDelete('CASCADE')
 
-      table.string('brand').notNullable()
-      table.string('model').notNullable()
+      table
+        .integer('model_id')
+        .unsigned()
+        .references('id')
+        .inTable('models')
+        .onDelete('CASCADE')
+
       table.string('year_of_registration').notNullable()
-      table.integer('current_mileage').notNullable()
+      table.integer('current_mileage', 6)
       table.string('registration_number').notNullable()
       table.string('vehicle_identification_number').notNullable()
       table.enum('engine_type', Object.values(EngineType)).notNullable()
-      table.string('power').notNullable()
-      table.string('color').notNullable()
+      table.string('power', 5)
+      table.string('color', 50)
       table.date('date_of_purchase').notNullable()
 
       table.timestamp('created_at', { useTz: true }).notNullable()
