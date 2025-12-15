@@ -15,13 +15,6 @@ export default class extends BaseSchema {
         .inTable('users')
         .onDelete('CASCADE')
 
-      table
-        .integer('model_id')
-        .unsigned()
-        .references('id')
-        .inTable('model')
-        .onDelete('CASCADE')
-
       table.string('year_of_registration').notNullable()
       table.integer('current_mileage', 6)
       table.string('registration_number').notNullable()

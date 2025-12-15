@@ -15,6 +15,12 @@ export default class Vehicle extends BaseModel {
   declare userId: number
 
   @column({})
+  declare modelId: number
+
+  @column({})
+  declare brandId: number
+
+  @column({})
   declare yearOfRegistration: string
 
   @column({})
