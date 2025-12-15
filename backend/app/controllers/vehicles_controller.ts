@@ -9,24 +9,6 @@ export default class VehiclesController {
     const vehicle  = await Vehicle.all()
     
     return response.ok(vehicle);
-    /* return [
-      {
-        id: 1,
-        name: "test"
-      },
-      {
-        id: 2,
-        name: "test"
-      },
-      {
-        id: 3,
-        name: "test"
-      },
-      {
-        id: 4,
-        name: "test"
-      },
-    ] */
   }
 
   /**
@@ -65,7 +47,7 @@ export default class VehiclesController {
   }
 
   /**
-   * Edit individual record
+   * Handle form submission for the edit action
    */
   async update({ params, request, response }: HttpContext) {
     try {
