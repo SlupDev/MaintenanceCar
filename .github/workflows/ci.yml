@@ -95,6 +95,9 @@ jobs:
       - name: Run migrations
         run: node ace migration:run --force
 
+      - name: Run seeders
+        run: node ace db:seed
+
       # Tests (avec Japa)
       - name: Run tests
         run: npm test
