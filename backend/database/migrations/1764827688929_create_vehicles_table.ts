@@ -19,7 +19,7 @@ export default class extends BaseSchema {
         .integer('model_id')
         .unsigned()
         .references('id')
-        .inTable('models')
+        .inTable('model')
         .onDelete('CASCADE')
 
       table.string('year_of_registration').notNullable()

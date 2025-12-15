@@ -48,8 +48,8 @@ export default class Vehicle extends BaseModel {
   declare user: BelongsTo<typeof User>
 
   @belongsTo(() => Model)
-  declare Model: BelongsTo<typeof Model>
+  declare model: BelongsTo<typeof Model>
 
   @hasMany(() => Maintenance)
-  declare Maintenance: HasMany<typeof Maintenance>
+  declare maintenance: HasMany<typeof Maintenance>
 }

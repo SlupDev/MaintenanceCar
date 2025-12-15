@@ -35,8 +35,8 @@ export default class Maintenance extends BaseModel {
   declare updatedAt: DateTime
 
   @belongsTo(() => User)
-  declare User: BelongsTo<typeof User>
+  declare user: BelongsTo<typeof User>
 
   @belongsTo(() => Vehicle)
-  declare Vehicle: BelongsTo<typeof Vehicle>
+  declare vehicle: BelongsTo<typeof Vehicle>
 }
