@@ -1,23 +1,24 @@
 # Utiliser Node.js LTS
 FROM node:22.16.0-alpine3.22 AS base
 
-# WORKDIR /app
 
-# # Copier package.json
-# COPY package*.json ./
+# Stage de développement
+FROM base AS development
 
-# # Stage de développement
-# FROM base AS development
+WORKDIR /app
 
-# # Installer les dépendances
-# RUN npm install
+# Copier package.json
+COPY package*.json ./
 
-# # Copier le code source
-# COPY . .
+# Installer les dépendances
+RUN npm install
 
-# EXPOSE 3333
+# Copier le code source
+COPY . .
 
-# CMD ["npm", "run", "dev"]
+EXPOSE 3333
+
+CMD ["npm", "run", "dev"]
 
 # # Stage de production
 # FROM base AS production
@@ -55,7 +56,7 @@ ADD . .
 RUN node ace build
 
 # Production stage
-FROM base as production
+FROM base AS production
 ENV NODE_ENV=production
 WORKDIR /app
 COPY --from=production-deps /app/node_modules /app/node_modules
