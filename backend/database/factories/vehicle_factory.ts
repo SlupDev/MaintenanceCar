@@ -6,8 +6,6 @@ import { DateTime } from 'luxon'
 export const VehicleFactory = factory
   .define(Vehicle, async ({ faker }) => {
     return {
-      brand: faker.vehicle.manufacturer(),
-      model: faker.vehicle.model(),
       yearOfRegistration: faker.date.past().getFullYear().toString(),
       currentMileage: faker.number.int({ min: 0, max: 300000 }),
       registrationNumber: faker.vehicle.vrm(),
