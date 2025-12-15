@@ -4,7 +4,8 @@ import { compose } from '@adonisjs/core/helpers'
 import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 import type { HasMany } from '@adonisjs/lucid/types/relations'
-import Vehicle from './vehicle.js'
+import Vehicle from '#models/vehicle'
+import Maintenance from '#models/maintenance'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
   uids: ['email'],
@@ -32,4 +33,7 @@ export default class User extends compose(BaseModel, AuthFinder) {
 
   @hasMany(() => Vehicle)
   declare vehicles: HasMany<typeof Vehicle>
+
+  @hasMany(() => Maintenance)
+  declare maintenance: HasMany<typeof Maintenance>
 }

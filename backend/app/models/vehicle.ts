@@ -1,8 +1,11 @@
 import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
-import { EngineType } from '../enum/engineType.js'
-import User from './user.js'
-import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import { BaseModel, belongsTo, column, hasMany } from '@adonisjs/lucid/orm'
+import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations'
+
+import { EngineType } from '#enums/engineType'
+import User from '#models/user'
+import Maintenance from '#models/maintenance'
+import Model from '#models/model'
 
 export default class Vehicle extends BaseModel {
   @column({ isPrimary: true })
@@ -10,12 +13,6 @@ export default class Vehicle extends BaseModel {
 
   @column({})
   declare userId: number
-
-  @column({})
-  declare brand: string // might be a new entity in the future
-
-  @column({})
-  declare model: string // might be a new entity in the future
 
   @column({})
   declare yearOfRegistration: string
@@ -49,4 +46,10 @@ export default class Vehicle extends BaseModel {
 
   @belongsTo(() => User)
   declare user: BelongsTo<typeof User>
+
+  @belongsTo(() => Model)
+  declare Model: BelongsTo<typeof Model>
+
+  @hasMany(() => Maintenance)
+  declare Maintenance: HasMany<typeof Maintenance>
 }
