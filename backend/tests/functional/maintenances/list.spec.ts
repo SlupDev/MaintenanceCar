@@ -3,7 +3,7 @@ import { test } from '@japa/runner'
 
 test.group('Maintenances list', () => {
   test('get a list of Maintenances', async ({ client }) => {
-    const response = await client.get('/Maintenance')
+    const response = await client.get('/maintenance')
 
     response.assertStatus(200)
     response.assertBody(Maintenance)
