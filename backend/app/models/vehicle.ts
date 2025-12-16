@@ -18,9 +18,6 @@ export default class Vehicle extends BaseModel {
   declare modelId: number
 
   @column({})
-  declare brandId: number
-
-  @column({})
   declare yearOfRegistration: string
 
   @column({})
@@ -57,5 +54,5 @@ export default class Vehicle extends BaseModel {
   declare model: BelongsTo<typeof Model>
 
   @hasMany(() => Maintenance)
-  declare maintenance: HasMany<typeof Maintenance>
+  declare maintenances: HasMany<typeof Maintenance>
 }

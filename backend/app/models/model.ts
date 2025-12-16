@@ -12,6 +12,9 @@ export default class Model extends BaseModel {
   @column({})
   declare name: string
 
+  @column()
+  declare brandId: number
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 
@@ -19,7 +22,7 @@ export default class Model extends BaseModel {
   declare updatedAt: DateTime
 
   @hasMany(() => Vehicle)
-  declare vehicle: HasMany<typeof Vehicle>
+  declare vehicles: HasMany<typeof Vehicle>
 
   @belongsTo(() => Brand)
   declare brand: BelongsTo<typeof Brand>

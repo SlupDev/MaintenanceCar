@@ -8,6 +8,9 @@ export default class Brand extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
+  @column({})
+  declare name: string
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 
@@ -15,5 +18,5 @@ export default class Brand extends BaseModel {
   declare updatedAt: DateTime
 
   @hasMany(() => Model)
-  declare model: HasMany<typeof Model>
+  declare models: HasMany<typeof Model>
 }

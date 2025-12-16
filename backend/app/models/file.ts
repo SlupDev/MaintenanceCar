@@ -8,6 +8,9 @@ export default class File extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
+  @column()
+  declare maintenanceId: number | null
+  
   @column({})
   declare name: string
 

@@ -4,11 +4,17 @@ import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 
 
 import User from '#models/user'
-import Vehicle from '#models/user'
+import Vehicle from '#models/vehicle'
 
 export default class Maintenance extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
+
+  @column()
+  declare userId: number 
+  
+  @column()
+  declare vehicleId: number
 
   @column({})
   declare title: string

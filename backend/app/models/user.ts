@@ -35,5 +35,5 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare vehicles: HasMany<typeof Vehicle>
 
   @hasMany(() => Maintenance)
-  declare maintenance: HasMany<typeof Maintenance>
+  declare maintenances: HasMany<typeof Maintenance>
 }
