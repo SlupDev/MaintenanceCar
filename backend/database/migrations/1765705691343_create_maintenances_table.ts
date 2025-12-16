@@ -7,6 +7,14 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
 
+      table
+        .integer('vehicle_id')
+        .unsigned()
+        .references('id')
+        .inTable('vehicles')
+        .onDelete('CASCADE')
+        .notNullable()
+
       table.string('title').notNullable()
       table.text('description', 'longtext')
       table.date('maintenance_date').notNullable()
