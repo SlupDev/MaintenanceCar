@@ -65,8 +65,8 @@ const Login: React.FC = () => {
     setTimeout(() => {
       setIsLoading(false)
       console.log('Données de connexion:', formData)
-      // Redirection vers la page Home après connexion réussie
-      navigate('/home')
+      // Redirection vers le Dashboard après connexion réussie
+      navigate('/dashboard')
     }, 1000)
   }
 
